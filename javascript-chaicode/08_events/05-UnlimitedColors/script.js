@@ -11,18 +11,17 @@ const randomColor = () => {
 
 let intervalId;
 const startChangingColor = () => {
-  const changeBgColor = () => {
-    document.body.style.backgroundColor = randomColor();
-  };
-  // function changeColorImmediate() {
-  //   changeBgColor();
-  // }
-  // changeColorImmediate();
+  if (!intervalId) {
   intervalId = setInterval(changeBgColor, 1000);
-  return intervalId;
+  }
+
+  function changeBgColor(){
+    document.body.style.backgroundColor = randomColor();
+  }
 };
 const stopChangingColor = () => {
   clearInterval(intervalId);
+  intervalId = null;
 };
 
 document.querySelector('#start').addEventListener('click', startChangingColor);
